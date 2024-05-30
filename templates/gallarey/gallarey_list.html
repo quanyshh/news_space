@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Галерея тізімі{% endblock %}
+{% block content %}
+<style>
+	 .mag-posts-area{
+        display:  block !important;
+    }
+</style>
+
+<div class="mag-breadcrumb py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'news:HomeView' %}"><i class="fa fa-home" aria-hidden="true"></i> Басты бет</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'photo_gallarey:gallarey_list' %}">Галерея</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="archive-post-area">
+    <div class="container">
+        <div class="">
+            <div class="col-md-12">
+                <div class="related-post-area bg-white mb-30 px-30 pt-30 box-shadow">
+
+                    
+                    <div class="row">
+                        {% for post in posts %}
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="single-blog-post style-4 mb-30">
+                                <div class="post-thumbnail">
+                                    <img src="{{ post.image.url }}" alt>
+                                </div>
+                                <div class="post-content">
+                                    <a href="" class="post-title">{{ post.title }}</a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}  

@@ -1,0 +1,20 @@
+
+<div class="single-sidebar-widget p-30">
+
+	<div class="section-heading">
+		<h5>Cоңғы бейнелер</h5>
+	</div>
+	{% for video in videos %}
+	<div class="single-blog-post ">
+		<div class="">
+			<iframe style="width:100%" src="{{video.src}}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+		<div class="">
+			<a href="{% url 'news_and_video:video_detail' video.id %}" class="post-title">{{video.title}}</a>
+			<div class="post-meta d-flex justify-content-between">
+				<a href=""><i class="fa fa-eye" aria-hidden="true"></i> {{video.views}}</a>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>

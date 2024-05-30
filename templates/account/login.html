@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<style>
+    .mag-posts-area{
+        display:  block !important;
+    }
+    .SPACE{
+        display: none;
+    }
+</style>
+<div class="mag-login-area py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6">
+                <div class="login-content bg-white p-30 box-shadow">
+
+                    <div class="section-heading">
+                        <h5>Жүйеге кіру!</h5>
+                    </div>
+                    <form method="post" action="{% url 'account:login' %}">
+                        {% csrf_token %}
+                        {{ form.username.errors }}
+                        <div class="form-group">
+                            <label for="">Пайдаланушы аты:</label>
+                            {{ form.username|add_class:"form-control" }}
+                        </div>
+
+                        {{ form.password.errors }}
+                        <div class="form-group">
+                            <label for="">Құпия сөз</label>
+                            {{ form.password|add_class:"form-control" }}
+                        </div>
+                        <a href="{% url 'account:register' %}" style="display:block; color: red; margin-bottom: 5px;">Егер тіркелмеген болсаңыз</a>
+                        <button type="submit "  class="btn btn-primary">Кіру</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}  

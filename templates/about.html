@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}{% block title %}Біз жайлы{% endblock %}
+{% block content %}
+<style>
+	 .mag-posts-area{
+        display:  block !important;
+    }
+</style>
+<div class="mag-breadcrumb py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="{% url 'news:HomeView' %}"><i class="fa fa-home" aria-hidden="true"></i> Басты бет</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Біз жайлы</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<section class="about-us-area">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-xl-8">
+
+				<div class="about-us-content bg-white mb-30 p-30 box-shadow">
+
+					<div class="section-heading">
+						<h5>Біз жайлы</h5>
+					</div>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consectetur mauris id scelerisque eleifend. Nunc vestibulum cursus quam at scelerisque. Aliquam quis varius orci, vel tincidunt est. Proin ac tincidunti, atmots interdum erat. Maecenas neque lorem, aliquet in tempus non, efficitur ac neque.</p>
+					<img class="mt-15" src="{% static 'img/mek.jpg' %}" alt>
+
+					<div class="section-heading mt-30">
+						<h5>біздің команда</h5>
+					</div>
+
+					<div class="single-team-member d-flex align-items-center">
+						<div class="team-member-thumbnail">
+							<img src="{% static 'img/mol.jpg' %}" alt>
+							<div class="social-btn">
+								<a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
+								<a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+								<a href=""><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+							</div>
+						</div>
+						<div class="team-member-content">
+							<h6>Мөлдір Қали</h6>
+							<span>Информатика мұғалімі</span>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consectetur mauris id scelerisque eleifend. Nunc vestibulum cursea quam at scelerisque.</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-12 col-md-6 col-lg-5 col-xl-4">
+				<div class="sidebar-area bg-white mb-30 box-shadow">
+
+					{% include 'include/sidebar-area.html' %}
+
+                    {% include 'include/pogoda.html' %}
+
+                    {% include 'include/NEWSLETTER.html' %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+{% endblock %}  

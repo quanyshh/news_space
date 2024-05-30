@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="post-sidebar-area left-sidebar mt-30 mb-30 bg-white box-shadow">
+	{% include 'post/video_posts.html' %}
+	
+
+</div>
+
+<div class="mag-posts-content mt-30 mb-30 p-30 box-shadow">
+
+	<div class="trending-now-posts mb-30">
+
+		<div class="section-heading">
+			<h5>Соңғы жаңалықтар</h5>
+		</div>
+		<div class="trending-post-slides owl-carousel">
+			{% for post in posts %}
+			<div class="single-trending-post">
+				<img src="{{ post.image.url }}" alt style="width:351px; height:240px;">
+				<div class="post-content">
+					<a href="{% url 'news:post_detail' post.id %}" class="post-cata">{{post.title}}</a>
+					<a href="" class="post-title">{{ post.content|truncatechars:50 }}</a>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+
+	<div class="feature-video-posts mb-30">
+
+		<div class="section-heading">
+			<h5>Алматинский технологический университет / Ostov / Репортаж</h5>
+		</div>
+		<div class="featured-video-posts">
+			<div class="row">
+				<div class="col-12 col-lg-12">
+
+					<div class="single-video-area bg-white mb-30 box-shadow">
+						<iframe src="https://www.youtube.com/embed/_1jTwWrm-No?si=hlS9Hyp-TNSz4-p6" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+						<div class="video-meta-data d-flex align-items-center justify-content-between">
+							<h6 class="total-views">1034 Көріністер</h6>
+							<div class="like-dislike d-flex align-items-center">
+								<button type="button"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834 Ұнайды</button>
+								<p><i class="fa fa-comments-o" aria-hidden="true"></i> 234 Пікірлер</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<div class="post-sidebar-area right-sidebar mt-30 mb-30 box-shadow">
+
+	{% include 'include/sidebar-area.html' %}
+
+	{% include 'include/categories.html' %}
+
+	{% include 'include/pogoda.html' %}
+
+	{% include 'include/NEWSLETTER.html' %}
+</div>
+{% endblock %}  

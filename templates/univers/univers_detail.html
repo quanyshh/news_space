@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+<style>
+	 .mag-posts-area{
+        display:  block !important;
+    }
+</style>
+<div class="mag-breadcrumb py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="{% url 'news:HomeView' %}"><i class="fa fa-home" aria-hidden="true"></i> Басты бет</a></li>
+						<li class="breadcrumb-item"><a href="{% url 'univers:univers_list' %}">Университет тізімі</a></li>
+						<li class="breadcrumb-item active" aria-current="page">{{post.title}}</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<section class="post-details-area">
+	<div class="container">
+		<div class="row justify-content-center">
+
+			<div class="col-12 col-xl-8">
+				<div class="post-details-content bg-white mb-30 p-30 box-shadow">
+					<div class="blog-thumb mb-30">
+						<img src="{{post.image.url}}" alt>
+					</div>
+					<div class="blog-content">
+						<h4 class="post-title">{{post.title}}</h4>
+
+						<div class="post-meta-2">
+							<a href="single-post.html#"><i class="fa fa-eye" aria-hidden="true"></i> {{ post.views }}</a>
+							<a href="single-post.html#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{ comment_count }}</a>
+						</div>
+						<p>{{post.content}}</p>
+					</div>
+					<h6>360° Виртуальные Тур</h6>
+					<iframe src="{{post.src}}" style="width:100%; height:550px" frameborder="0"></iframe>
+					
+				</div>
+
+			</div>
+
+			<div class="col-12 col-md-6 col-lg-5 col-xl-4">
+				<div class="sidebar-area bg-white mb-30 box-shadow">
+					<div class="single-sidebar-widget p-30">
+
+						<div class="section-heading">
+							<h5>ЖОО ақпарат</h5>
+						</div>
+
+						<ul class="catagory-widgets" style="padding-left: 0;">
+							<li>
+								<a href="">
+									<span style="font-weight: 600;"> Басқарушы:</span> 
+									<span>{{ post.Management }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="">
+									<span style="font-weight: 600;"> Құрылған жылы::</span> 
+									<span>{{ post.start_date }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://{{ post.site }}">
+									<span style="font-weight: 600;"> Cайт:</span> 
+									<span>{{ post.site }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="{{ post.email }}">
+									<span style="font-weight: 600;"> E-mail:</span> 
+									<span>{{ post.email }}</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+
+					{% include 'include/pogoda.html' %}
+					<div class="single-sidebar-widget p-30">
+
+						<div class="section-heading">
+							<h5>Карта</h5>
+						</div>
+
+						<iframe src="{{post.karta}}" style="border:0; width: 100%; height:400px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}  

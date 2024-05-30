@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+<style>
+	 .mag-posts-area{
+        display:  block !important;
+    }
+</style>
+<div class="mag-breadcrumb py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="{% url 'news:HomeView' %}"><i class="fa fa-home" aria-hidden="true"></i> Басты бет</a></li>
+						<li class="breadcrumb-item"><a href="{% url 'news:post_list' %}">Жаңалықтар</a></li>
+						<li class="breadcrumb-item active" aria-current="page">{{post.title}}</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<section class="post-details-area">
+	<div class="container">
+		<div class="row justify-content-center">
+
+			<div class="col-12 col-xl-8">
+				<div class="post-details-content bg-white mb-30 p-30 box-shadow">
+					<div class="blog-thumb mb-30">
+						<img src="{{post.image.url}}" alt>
+					</div>
+					<div class="blog-content">
+						<div class="post-meta">
+							<a href="single-post.html#">{{post.pub_date}}</a>
+							<a href="archive.html">{{post.category}}</a>
+						</div>
+						<h4 class="post-title">{{post.title}}</h4>
+
+						<div class="post-meta-2">
+							<a href="single-post.html#"><i class="fa fa-eye" aria-hidden="true"></i> {{ post.views }}</a>
+							<a href="single-post.html#"><i class="fa fa-comments-o" aria-hidden="true"></i> {{ comment_count }}</a>
+						</div>
+						<p>{{post.content}}</p>
+						<div class="post-author d-flex align-items-center">
+							<div class="post-author-thumb">
+								<img src="{% static 'img/user.jpg' %}" alt>
+							</div>
+							<div class="post-author-desc pl-4">
+								<a href="single-post.html#" class="author-name">{{post.author}}</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="comment_area clearfix bg-white mb-30 p-30 box-shadow">
+
+					<div class="section-heading">
+						<h5>Пікірлер</h5>
+					</div>
+					<ol>
+						{% for comment in comments %}
+							{% if comment %}
+							<li class="single_comment_area">
+
+								<div class="comment-content d-flex">
+
+									<div class="comment-author">
+										<img src="{% static 'img/user.jpg' %}" alt="author">
+									</div>
+
+									<div class="comment-meta">
+										<a href="" class="comment-date">{{ comment.pub_date }}</a>
+										<h6>{{ comment.user.username }}</h6>
+										<p>{{comment.text}}</p>
+									</div>
+								</div>
+							</li>
+							{% else %}
+	                            Пікірлер жоқ
+	                        {% endif %}
+                        {% endfor %}
+					</ol>
+				</div>
+
+				<div class="post-a-comment-area bg-white mb-30 p-30 box-shadow clearfix">
+
+					<div class="section-heading">
+						<h5>ЖАУАП ҚАЛДЫРУ</h5>
+					</div>
+
+					<div class="contact-form-area">
+						<form action="" method="post">
+							{% csrf_token %}
+							<div class="row">
+								<div class="col-12">
+									<textarea name="{{ comment_form.text.name }}" class="form-control" id="message" cols="30" rows="10" placeholder="Хабарлама*" required></textarea>
+								</div>
+								<div class="col-12">
+									<button class="btn mag-btn mt-30" type="submit">Пікір қалдыру</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-12 col-md-6 col-lg-5 col-xl-4">
+				<div class="sidebar-area bg-white mb-30 box-shadow">
+
+					{% include 'include/sidebar-area.html' %}
+
+					{% include 'include/categories.html' %}
+
+					{% include 'include/pogoda.html' %}
+
+					{% include 'include/NEWSLETTER.html' %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}  

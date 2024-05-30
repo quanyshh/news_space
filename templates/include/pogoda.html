@@ -1,0 +1,82 @@
+<style>
+    
+.card{
+    padding: 1rem;
+    text-align: center;
+}
+
+.title p{
+    margin-bottom: 0.2rem;
+    font-size: 1.2rem;
+}
+.temp{
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+}
+.header{
+    color: #dddddd;
+}
+.col-4{
+    padding: 0 0.2rem;
+}
+.icon{
+    align-self: flex-end;
+    margin-right: -2.5rem;
+    margin-top: -2rem;
+    z-index: 999;
+}
+.icon img{
+    width: 5rem;
+}
+</style>
+<div class="single-sidebar-widget p-30">
+    <div class="section-heading">
+        <h5>Ауа райы</h5>
+    </div>
+    <div class="card">
+        <div style="text-align: center;">
+            
+            <div class="title"><p>Sydney</p></div>
+        </div>
+        <div class="temp">+20<sup>&deg;</sup></div>
+            <div class="d-flex" style="justify-content:space-between;">
+                <div class="col">
+                    <div class="header">Ел</div>
+                    <div class="value country">Sunny</div>
+                </div>
+                <div class="col text-cent">
+                    <div class="header">Желдің жылдамдығы</div>
+                    <div class="value wind">47</div>
+                </div>
+            </div>
+            
+    </div> 
+</div>
+
+<script>
+    // Получение текущего местоположения пользователя
+    navigator.geolocation.getCurrentPosition(function(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        // Запрос погоды по координатам
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=d105ee3d2ee20c7fdbfdff3c6c8433db`)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                console.log(data);
+                document.querySelector('.title p').innerHTML = data.name;
+                document.querySelector('.country').innerHTML = data.sys['country'];
+                document.querySelector('.wind').innerHTML = data.wind['speed'];
+                document.querySelector('.temp').innerHTML = Math.round(data.main.temp - 273) + ' °C';
+                document.querySelector('.disclaimer').innerHTML = data.weather[0].description;
+                document.querySelector('.icontest').innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png" alt="Weather Icon">`;
+            })
+            .catch(function(error) {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    }, function(error) {
+        console.error('Error getting user location:', error);
+    });
+</script>

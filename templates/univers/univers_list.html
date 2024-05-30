@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Университет тізімі{% endblock %}
+{% load news_tags %}
+{% block content %}
+<style>
+	 .mag-posts-area{
+        display:  block !important;
+    }
+</style>
+
+<div class="mag-breadcrumb py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'news:HomeView' %}"><i class="fa fa-home" aria-hidden="true"></i> Басты бет</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'univers:univers_list' %}">Университет тізімі</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="archive-post-area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-8">
+                <div class="archive-posts-area bg-white p-30 mb-30 box-shadow">
+                    {% for post in univers %}
+                        <div class="single-catagory-post d-flex flex-wrap">
+                            <div class="post-thumbnail bg-img" style="background-image: url('{{ post.image.url }}');">
+                            </div>
+                            <div class="post-content">
+                                <a href="{% url 'univers:univers_detail' post.id %}" class="post-title">{{ post.title }}</a>
+                                <div class="post-meta-2">
+                                    <a href=""><i class="fa fa-eye" aria-hidden="true"></i> {{ post.views }}</a>
+                                    <a href=""><i class="fa fa-comments-o" aria-hidden="true"></i> {% coment_count post.id %}</a>
+                                </div>
+                                <p>{{ post.content|truncatechars:200 }}...</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    
+
+                    <nav>
+                        <ul class="pagination">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1">&laquo; Бірінші бет</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">алдыңғы бет</a>
+                                </li>
+                            {% endif %}
+
+                            <li class="page-item"><a class="page-link" href="">
+                                 {{ page_obj.number }} беттің  {{ page_obj.paginator.num_pages }}-і
+                            </a></li>
+                            {% if page_obj.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">келесі бет</a></li>
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Соңғы бет &raquo;</a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-5 col-xl-4">
+                <div class="sidebar-area bg-white mb-30 box-shadow">
+
+                    {% include 'include/sidebar-area.html' %}
+
+                    {% include 'include/pogoda.html' %}
+
+                    {% include 'include/NEWSLETTER.html' %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}  

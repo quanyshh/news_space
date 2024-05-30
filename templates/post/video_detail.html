@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ video.title }}{% endblock %}
+{% block content %}
+<style>
+	 .mag-posts-area{
+        display:  block !important;
+    }
+</style>
+<div class="mag-breadcrumb py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="{% url 'news:HomeView' %}"><i class="fa fa-home" aria-hidden="true"></i> Басты бет</a></li>
+						<li class="breadcrumb-item active" aria-current="page">{{ video.title }}</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+
+<section class="post-details-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="single-video-area bg-white mb-30 box-shadow">
+					<iframe src="{{ video.src }}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+					<div class="video-meta-data d-flex align-items-center justify-content-between">
+						<h6 class="total-views">{{ video.views }} қаралым</h6>
+						<div class="like-dislike d-flex align-items-center">
+							<p><i class="fa fa-comments-o" aria-hidden="true"></i> {{comment_count}} пікір</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+
+			<div class="col-md-12 col-xl-12">
+				<div class="post-details-content bg-white mb-30 p-30 box-shadow">
+					<div class="blog-content">
+						<div class="post-meta">
+							<a href="video-post.html#">{{ video.src }}</a>
+							<a href="archive.html"></a>
+						</div>
+						<h4 class="post-title">{{ video.title }}</h4>
+
+						<p>{{ video.content }}</p>
+						<blockquote>
+							<h6 class="quote-text">“Design is a funny word. Some people think design means how it looks. But of course, if you dig deeper, it's really how it works. The design of the Mac wasn't what it looked like, although that was part of it.”</h6>
+							<h6 class="quote-name">STEVE JOBS</h6>
+						</blockquote>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+{% endblock %}  

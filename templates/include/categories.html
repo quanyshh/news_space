@@ -1,0 +1,12 @@
+<div class="single-sidebar-widget p-30">
+
+	<div class="section-heading">
+		<h5>Санаттар</h5>
+	</div>
+
+	<ul class="catagory-widgets" style="padding-left:0">
+		{% for category_count in category_post_counts %}
+			<li><a href=""><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{ category_count.title }}</span> <span>{{ category_count.post_count }}</span></a></li>
+		{% endfor %}
+	</ul>
+</div>
